@@ -1,4 +1,5 @@
 #This is an android calculator project.
+##This Calculator uses BigDecimal it will be improved and modefied to Double ASAP.
 
 
 
