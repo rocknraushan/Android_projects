@@ -89,7 +89,8 @@ public class Eval {
                     throw new UnsupportedOperationException("Cannot divide by zero");
                 return a.divide(b);
             case '%':
-                return (a.multiply(b)).divide(new BigDecimal(100));
+                BigDecimal res = (a.multiply(b)).divide(new BigDecimal(100));
+                return res;
             case '^':
                 return a.pow(b);
 
