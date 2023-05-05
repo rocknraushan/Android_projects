@@ -1,7 +1,7 @@
 This is an android calculator project.
 
 
->This Calculator uses BigDecimal it will be improved and modefied to Double ASAP.
+>This Calculator uses BigDecimal it will be improved and modefied to Double ASAP.<br>
 >Percent will be working again(Not working beccause of BigDecimal)
 
 
