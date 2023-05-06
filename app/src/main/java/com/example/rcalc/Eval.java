@@ -13,9 +13,11 @@ public class Eval {
 
     public static BigDecimal evaluateExpression(String expression) {
 //            double initial = 0;
+
+//            final float Percent = 0.01f;
+
         Stack<BigDecimal> numbers = new Stack<>();
         Stack<Character> operators = new Stack<>();
-//            final float Percent = 0.01f;
 
 
         for (int i = 0; i < expression.length(); i++) {
