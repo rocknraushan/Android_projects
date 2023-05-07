@@ -293,7 +293,7 @@ public class MainActivity extends AppCompatActivity {
         btn_brace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String str = display.getText().toString().trim();
+                String str = expression.toString();
 
                 if (str.length() < 1) {
                     expression.append("(");
@@ -301,32 +301,32 @@ public class MainActivity extends AppCompatActivity {
                     OpenBraces++;
                 } else if (str.length() > 0) {
                     boolean digit = Character.isDigit(str.charAt(str.length() - 1));
+                    boolean b = digit || str.charAt(str.length() - 1) == ')';
                     if (OpenBraces > 0) {
-                        if (digit || str.charAt(str.length() - 1) == ')') {
+                        if (b) {
                             expression.append(")");
-                            display.setText(String.format("%s)", str));
+                            display.setText(display.getText() + ")");
                             OpenBraces--;
                             dotops = false;
-                        }
-                    } else if (!digit) {
-                        if (str.charAt(str.length() - 1) == ')') {
-                            expression.append("*(");
-                            display.setText(String.format("%s(", str));
-                            dotops = false;
-                            OpenBraces++;
+                            GetResult();
                         } else {
                             expression.append("(");
                             display.append("(");
                             OpenBraces++;
                         }
-                    } else if (digit) {
-                        display.append("*(");
+                    } else if (b) {
+                        expression.append("*(");
                         display.setText(String.format("%s(", str));
                         dotops = false;
                         OpenBraces++;
+                    } else {
+                        expression.append("(");
+                        display.append("(");
+                        OpenBraces++;
                     }
-
                 }
+
+
             }
         });
         btn_ac.setOnClickListener(new View.OnClickListener() {
