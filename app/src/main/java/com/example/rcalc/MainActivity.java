@@ -451,37 +451,49 @@ public class MainActivity extends AppCompatActivity {
 
                 String text = display.getText().toString();
 
-                if (text.charAt(text.length() - 1) == '%') {
-                    display.setText(text.substring(0, text.length() - 1));
-                    expression.delete(expression.length() - 4, expression.length());
-                    GetResult();
-                    return;
-                }
 
                 String minus = "";
 //                String minuscheck=null;
                 if (expression.length() >= 5) {
                     minus = expression.substring(expression.length() - 5, expression.length());
                 }
-                Log.d("minuscheck", minus);
-                if (text.length() > 0) {                                                            //Logic when expression in not null
+//                Log.d("minuscheck461", minus);
+                if (text.length() > 0) {                                                                //Logic when expression in not null
+
+                    if (text.charAt(text.length() - 1) == '%') {
+                        display.setText(text.substring(0, text.length() - 1));
+                        expression.delete(expression.length() - 5, expression.length());
+                        GetResult();
+                        return;
+                    }
                     if (text.charAt(text.length() - 1) == '.')                                      //if deleting character is a decimal make decimal operation true
                         dotops = true;
-                    if (text.charAt(text.length() - 1) == ')')
-                        OpenBraces++;
+//
+
 
                     if (minus.equals("(0-1*")) {
                         expression.delete(expression.length() - 5, expression.length());
                         display.setText(text.substring(0, text.length() - 2));
                         Log.d("Touched it", expression.toString());
-                        OpenBraces--;                                                               //As (- get deleted whole at once !
+                        //As (- get deleted whole at once !
 
 
                     } else {
+                        Log.d("CheckedBraces485", text);
+                        if (text.charAt(text.length() - 1) == ')') {
+                            OpenBraces++;
+//                            Log.d("CheckedBraces488", String.valueOf(OpenBraces));
+                        }
+
+                        if (text.charAt(text.length() - 1) == '(') {
+                            OpenBraces--;
+//                            Log.d("CheckedBraces488", String.valueOf(OpenBraces));
+                        }
                         display.setText(text.substring(0, text.length() - 1));
                         expression.deleteCharAt(expression.length() - 1);
-                        Log.d("expression", expression.toString());
-                        Log.d("minus2", minus);
+//                        Log.d("expression492", expression.toString());
+//                        Log.d("Bracecount493",String.valueOf(OpenBraces));
+//                        Log.d("minus494", minus);
                     }
                     GetResult();
                 } else {
@@ -497,7 +509,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void GetResult() {
-        Log.d("expression=", expression.toString());
+//        Log.d("OPenB", String.valueOf(OpenBraces));
+//        Log.d("expression=", expression.toString());
         try {
             Double result = (Eval.evaluateExpression(expression.toString()));
             sec_display.setText(String.valueOf(result));
@@ -511,10 +524,10 @@ public class MainActivity extends AppCompatActivity {
     Boolean numcondition() {
         String exp = display.getText().toString();
 
-        Log.d("getexp", exp);
-        if (exp.charAt(exp.length() - 1) == ')' || exp.charAt(exp.length() - 1) == '%') {
-            Log.d("getBool", "true");
-            return true;
+//        Log.d("getexp", exp);
+        if (exp.length() > 0) {
+            //                Log.d("getBool", "true");
+            return exp.charAt(exp.length() - 1) == ')' || exp.charAt(exp.length() - 1) == '%';
         }
         return false;
     }
