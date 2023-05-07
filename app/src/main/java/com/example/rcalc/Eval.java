@@ -4,19 +4,17 @@ are separated by space.
 */
 
 import android.annotation.SuppressLint;
-import android.icu.math.BigDecimal;
 
 import java.util.Stack;
 
 public class Eval {
 
 
-    public static BigDecimal evaluateExpression(String expression) {
+    public static Double evaluateExpression(String expression) {
 //            double initial = 0;
 
 //            final float Percent = 0.01f;
-
-        Stack<BigDecimal> numbers = new Stack<>();
+        Stack<Double> numbers = new Stack<>();
         Stack<Character> operators = new Stack<>();
 
 
@@ -31,19 +29,19 @@ public class Eval {
                 }
                 i--;
 
-                @SuppressLint({"NewApi", "LocalSuppress"}) BigDecimal value = new BigDecimal(num);
+                Double value = Double.valueOf(num);
                 numbers.push(value);
             } else if (c == '(') {
                 operators.push(c);
             } else if (c == ')') {
                 while (operators.peek() != '(') {
-                    BigDecimal result = performOperation(numbers, operators);
+                    Double result = performOperation(numbers, operators);
                     numbers.push(result);
                 }
                 operators.pop();
             } else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '%' || c == '^') {
                 while (!operators.isEmpty() && hasPrecedence(c, operators.peek())) {
-                    BigDecimal result = performOperation(numbers, operators);
+                    Double result = performOperation(numbers, operators);
                     numbers.push(result);
                 }
                 operators.push(c);
@@ -51,7 +49,7 @@ public class Eval {
         }
 
         while (!operators.isEmpty()) {
-            BigDecimal result = performOperation(numbers, operators);
+            Double result = performOperation(numbers, operators);
             numbers.push(result);
         }
 
@@ -67,39 +65,37 @@ public class Eval {
     }
 
     @SuppressLint("NewApi")
-    public static BigDecimal performOperation(Stack<BigDecimal> numbers, Stack<Character> operators) {
+    public static Double performOperation(Stack<Double> numbers, Stack<Character> operators) {
         char operator = operators.pop();
-        BigDecimal a;
-        BigDecimal b;
-        try {
-            b = numbers.pop();
-        } catch (Exception e) {
-            b = BigDecimal.ONE;
-        }
+        Double a;
+        Double b;
+
+        b = numbers.pop();
+
         a = numbers.pop();
 
 
         switch (operator) {
             case '+':
-                return a.add(b);
+                return a + b;
             case '-':
-                return a.subtract(b);
+                return a - b;
             case '*':
-                return a.multiply(b);
+                return a * b;
             case '/':
-                if (b.equals(BigDecimal.ZERO))
+                if (b == 0) {
                     throw new UnsupportedOperationException("Cannot divide by zero");
-                return a.divide(b);
-            case '%':
-                BigDecimal res = (a.multiply(b)).divide(new BigDecimal(100));
-                return res;
+                } else {
+                    return a / b;
+                }
+
             case '^':
-                return a.pow(b);
+                return Math.pow(a, b);
 
 
         }
 
-        return BigDecimal.ZERO;
+        return 0.0;
     }
 
 

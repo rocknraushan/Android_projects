@@ -5,7 +5,6 @@
 
 package com.example.rcalc;
 
-import android.icu.math.BigDecimal;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -25,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
     Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0, btn_add, btn_minus, btn_dev, btn_multiply, btn_back, btn_brace, btn_dot, btn_percent, btn_equal, btn_ac, btn_power;
     private int OpenBraces = 0;
     private boolean dotops = true;
+    final Double percent = 0.01;
     StringBuilder expression = new StringBuilder();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         btn_power.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = display.getText().toString().trim();
+                String text = expression.toString();
                 if (text.length() < 1 || text.charAt(text.length() - 1) == '+'
                         || text.charAt(text.length() - 1) == '^'
                         || text.charAt(text.length() - 1) == '/'
@@ -82,11 +83,18 @@ public class MainActivity extends AppCompatActivity {
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression.append("0");
-                display.setText(display.getText().append(new StringBuilder()).append("0").toString());
 
+                if (numcondition()) {
+                    expression.append("*0");
+                    display.setText(display.getText().append(new StringBuilder()).append("*0").toString());
+                    GetResult();
 
-                GetResult();
+                } else {
+                    expression.append("0");
+                    display.setText(display.getText().append(new StringBuilder()).append("0").toString());
+                    GetResult();
+                }
+
 
             }
         });
@@ -94,83 +102,150 @@ public class MainActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression.append("1");
-                display.setText(display.getText().append(new StringBuilder()).append("1").toString());
+                if (numcondition()) {
+                    expression.append("*1");
+                    display.setText(display.getText().append(new StringBuilder()).append("*1").toString());
+                    GetResult();
 
-                GetResult();
+                } else {
+                    expression.append("1");
+                    display.setText(display.getText().append(new StringBuilder()).append("1").toString());
+                    GetResult();
+                }
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression.append("2");
-                display.setText(display.getText().append(new StringBuilder()).append("2").toString());
-                GetResult();
+
+                if (numcondition()) {
+                    expression.append("*2");
+                    display.setText(display.getText().append(new StringBuilder()).append("*2").toString());
+                    GetResult();
+
+                } else {
+                    expression.append("2");
+                    display.setText(display.getText().append(new StringBuilder()).append("2").toString());
+                    GetResult();
+                }
             }
         });
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression.append("3");
-                display.setText(display.getText().append(new StringBuilder()).append("3").toString());
-                GetResult();
+                if (numcondition()) {
+                    expression.append("*3");
+                    display.setText(display.getText().append(new StringBuilder()).append("*3").toString());
+                    GetResult();
+
+                } else {
+                    expression.append("3");
+                    display.setText(display.getText().append(new StringBuilder()).append("3").toString());
+                    GetResult();
+                }
             }
         });
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression.append("4");
-                display.setText(display.getText().append(new StringBuilder()).append("4").toString());
-                GetResult();
+                if (numcondition()) {
+                    expression.append("*4");
+                    display.setText(display.getText().append(new StringBuilder()).append("*4").toString());
+                    GetResult();
+
+                } else {
+                    expression.append("4");
+                    display.setText(display.getText().append(new StringBuilder()).append("4").toString());
+                    GetResult();
+                }
             }
         });
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression.append("5");
-                display.setText(display.getText().append(new StringBuilder()).append("5").toString());
-                GetResult();
+                if (numcondition()) {
+                    expression.append("*5");
+                    display.setText(display.getText().append(new StringBuilder()).append("*5").toString());
+                    GetResult();
+
+                } else {
+                    expression.append("5");
+                    display.setText(display.getText().append(new StringBuilder()).append("5").toString());
+                    GetResult();
+                }
             }
         });
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression.append("6");
-                display.setText(display.getText().append(new StringBuilder()).append("6").toString());
-                GetResult();
+                if (numcondition()) {
+                    expression.append("*6");
+                    display.setText(display.getText().append(new StringBuilder()).append("*6").toString());
+                    GetResult();
+
+                } else {
+                    expression.append("6");
+                    display.setText(display.getText().append(new StringBuilder()).append("6").toString());
+                    GetResult();
+                }
             }
         });
         btn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression.append("7");
-                display.setText(display.getText().append(new StringBuilder()).append("7").toString());
+                if (numcondition()) {
+                    expression.append("*7");
+                    display.setText(display.getText().append(new StringBuilder()).append("*7").toString());
+                    GetResult();
 
-                GetResult();
+                } else {
+                    expression.append("7");
+                    display.setText(display.getText().append(new StringBuilder()).append("7").toString());
+                    GetResult();
+                }
             }
         });
         btn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression.append("8");
-                display.setText(display.getText().append(new StringBuilder()).append("8").toString());
-                GetResult();
+                if (numcondition()) {
+                    expression.append("*8");
+                    display.setText(display.getText().append(new StringBuilder()).append("*8").toString());
+                    GetResult();
+
+                } else {
+                    expression.append("8");
+                    display.setText(display.getText().append(new StringBuilder()).append("8").toString());
+                    GetResult();
+                }
             }
         });
         btn9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (numcondition()) {
+                    expression.append("*9");
+                    display.setText(display.getText().append(new StringBuilder()).append("*9").toString());
+                    GetResult();
 
-                expression.append("9");
-                display.setText(display.getText().append(new StringBuilder()).append("9").toString());
-                GetResult();
+                } else {
+                    expression.append("9");
+                    display.setText(display.getText().append(new StringBuilder()).append("9").toString());
+                    GetResult();
+                }
+
             }
         });
         btn_dot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String text = display.getText().toString().trim();
+                String text = expression.toString();
+                if (display.toString().charAt(display.toString().length() - 1) == '%') {
+                    expression.append("*0.");
+                    display.setText(display.getText().append(new StringBuilder()).append("0.").toString());
+                    return;
+                }
                 if (dotops && text.length() < 1 || text.charAt(text.length() - 1) == '+'
                         || text.charAt(text.length() - 1) == '^'
                         || text.charAt(text.length() - 1) == '/'
@@ -195,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String text = display.getText().toString().trim();
+                String text = expression.toString();
                 if (text.length() < 1 || text.charAt(text.length() - 1) == '+'
                         || text.charAt(text.length() - 1) == '^'
                         || text.charAt(text.length() - 1) == '/'
@@ -213,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String text = display.getText().toString().trim();
+                String text = expression.toString();
                 if (text.length() < 1) {
                     expression.append("(0-1*");
                     display.setText(display.getText().append(new StringBuilder()).append("(-").toString());
@@ -236,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String text = display.getText().toString().trim();
+                String text = expression.toString();
                 if (text.length() < 1 || text.charAt(text.length() - 1) == '+'
                         || text.charAt(text.length() - 1) == '^'
                         || text.charAt(text.length() - 1) == '/'
@@ -256,7 +331,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 dotops = true;
 
-                String text = display.getText().toString().trim();
+                String text = expression.toString();
                 if (text.length() < 1 || text.charAt(text.length() - 1) == '+'
                         || text.charAt(text.length() - 1) == '^'
                         || text.charAt(text.length() - 1) == '/'
@@ -274,9 +349,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                dotops=true;
-                String text = display.getText().toString().trim();
+                String text = expression.toString();
                 if (text.length() < 1 || text.charAt(text.length() - 1) == '+'
-                        || text.charAt(text.length() - 1) == '%'
                         || text.charAt(text.length() - 1) == '/'
                         || text.charAt(text.length() - 1) == '*'
                         || text.charAt(text.length() - 1) == '-')
@@ -284,7 +358,10 @@ public class MainActivity extends AppCompatActivity {
                 else if (Character.isDigit(text.charAt(text.length() - 1)) || text.charAt(text.length() - 1) == ')') {
                     dotops = true;
                     display.setText(display.getText().append(new StringBuilder()).append("%").toString());
-                    expression.append('%');
+                    expression.append("*");
+                    expression.append(percent);
+                    GetResult();
+
 
                 }
             }
@@ -316,7 +393,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     } else if (b) {
                         expression.append("*(");
-                        display.setText(String.format("%s(", str));
+                        display.setText(String.format("%s*(", str));
                         dotops = false;
                         OpenBraces++;
                     } else {
@@ -354,7 +431,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 try {
 
-                    BigDecimal result = (Eval.evaluateExpression(expression.toString()));
+                    Double result = (Eval.evaluateExpression(expression.toString()));
                     display.setText(String.valueOf(result));
                     sec_display.setText("");
                     expression = new StringBuilder(result.toString());
@@ -369,7 +446,17 @@ public class MainActivity extends AppCompatActivity {
         });
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {                  //Logic for Back button pressed
+            public void onClick(View v) {                                                           //Logic for Back button pressed
+
+
+                String text = display.getText().toString();
+
+                if (text.charAt(text.length() - 1) == '%') {
+                    display.setText(text.substring(0, text.length() - 1));
+                    expression.delete(expression.length() - 4, expression.length());
+                    GetResult();
+                    return;
+                }
 
                 String minus = "";
 //                String minuscheck=null;
@@ -377,9 +464,8 @@ public class MainActivity extends AppCompatActivity {
                     minus = expression.substring(expression.length() - 5, expression.length());
                 }
                 Log.d("minuscheck", minus);
-                String text = display.getText().toString();
-                if (text.length() > 0) {           //Logic when expression in not null
-                    if (text.charAt(text.length() - 1) == '.')      //if deleting character is a decimal make decimal operation true
+                if (text.length() > 0) {                                                            //Logic when expression in not null
+                    if (text.charAt(text.length() - 1) == '.')                                      //if deleting character is a decimal make decimal operation true
                         dotops = true;
                     if (text.charAt(text.length() - 1) == ')')
                         OpenBraces++;
@@ -388,21 +474,16 @@ public class MainActivity extends AppCompatActivity {
                         expression.delete(expression.length() - 5, expression.length());
                         display.setText(text.substring(0, text.length() - 2));
                         Log.d("Touched it", expression.toString());
-                        OpenBraces--;                                                                   //As (- get deleted whole at once !
+                        OpenBraces--;                                                               //As (- get deleted whole at once !
+
+
                     } else {
                         display.setText(text.substring(0, text.length() - 1));
                         expression.deleteCharAt(expression.length() - 1);
                         Log.d("expression", expression.toString());
                         Log.d("minus2", minus);
                     }
-                    try {
-                        BigDecimal result = (Eval.evaluateExpression(expression.toString()));
-                        sec_display.setText(String.valueOf(result));
-                    } catch (Exception e) {
-
-                        sec_display.setText("");
-
-                    }
+                    GetResult();
                 } else {
                     display.setText("");
                     sec_display.setText("");
@@ -418,12 +499,23 @@ public class MainActivity extends AppCompatActivity {
     private void GetResult() {
         Log.d("expression=", expression.toString());
         try {
-            BigDecimal result = (Eval.evaluateExpression(expression.toString()));
+            Double result = (Eval.evaluateExpression(expression.toString()));
             sec_display.setText(String.valueOf(result));
         } catch (Exception e) {
 
             sec_display.setText("");
 
         }
+    }
+
+    Boolean numcondition() {
+        String exp = display.getText().toString();
+
+        Log.d("getexp", exp);
+        if (exp.charAt(exp.length() - 1) == ')' || exp.charAt(exp.length() - 1) == '%') {
+            Log.d("getBool", "true");
+            return true;
+        }
+        return false;
     }
 }
