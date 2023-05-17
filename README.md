@@ -1,8 +1,11 @@
 <h1>This is an android calculator project.</h1>
 
 
->This Calculator uses BigDecimal it will be improved and modefied to Double ASAP.<br>
->Percent will be working again(Not working beccause of BigDecimal)
+>The evaluation is based on STACK data-structure.<br>
+>The UI will be improved in next update.<br>
+
+
+<b>If you like my work, follow me!
 
 
 
