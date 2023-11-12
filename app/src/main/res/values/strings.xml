@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">R Calc</string>
+    <string name="_0">0</string>
+    <string name="back_space">Back space</string>
 </resources>

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+
         android:allowBackup="true"
         android:banner="@drawable/calculator_svgrepo_com__1_"
         android:dataExtractionRules="@xml/data_extraction_rules"

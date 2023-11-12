@@ -11,18 +11,20 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 
 public class MainActivity extends AppCompatActivity {
 
-
+    CardView cardView;
     EditText display;
     TextView sec_display;
-    Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0, btn_add, btn_minus, btn_dev, btn_multiply, btn_back, btn_brace, btn_dot, btn_percent, btn_equal, btn_ac, btn_power;
+    Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0, btn_add, btn_minus, btn_dev, btn_multiply, btn_brace, btn_dot, btn_percent, btn_equal, btn_ac, btn_power;
     private int OpenBraces = 0;
     private boolean dotops = true;
     final Double percent = 0.01;
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         display.setGravity(Gravity.CENTER);
         display.setCursorVisible(false);
         sec_display = findViewById(R.id.sec_display);
-        btn_back = findViewById(R.id.back);
+        ImageButton btn_back = (ImageButton) findViewById(R.id.back);
         btn0 = findViewById(R.id.btn0);
         btn1 = findViewById(R.id.btn1);
         btn2 = findViewById(R.id.btn2);
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         btn_multiply = findViewById(R.id.multiply);
         btn_brace = findViewById(R.id.brac1);
         btn_power = findViewById(R.id.btn_exponent);
+        cardView = findViewById(R.id.cardview);
 
 
         btn_power.setOnClickListener(new View.OnClickListener() {
